@@ -2099,6 +2099,330 @@ textarea.form-control {
 }
 
 /* ==========================================================================
+   PAGE HERO (FOR DEDICATED SUBPAGES)
+   ========================================================================== */
+.page-hero {
+  background: var(--gradient-navy);
+  color: var(--text-light);
+  padding: 4.5rem 0 3.5rem 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.25);
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(23, 59, 99, 0.45) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(201, 169, 110, 0.15) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #94A3B8;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb-nav a {
+  color: var(--accent-gold);
+}
+
+.breadcrumb-nav a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #64748B;
+}
+
+.page-hero-title {
+  color: var(--bg-white);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.page-hero-desc {
+  font-size: 1.1rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   MANPOWER & TEAM STATS
+   ========================================================================== */
+.team-stats-banner {
+  background: var(--bg-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 3.5rem;
+}
+
+.team-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.team-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: var(--bg-light);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.team-stat-item:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-white);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-3px);
+}
+
+.team-stat-number {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--secondary-royal);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.team-stat-item.total .team-stat-number {
+  color: var(--accent-gold-dark);
+}
+
+.team-stat-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin-bottom: 0.2rem;
+}
+
+.team-stat-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   INFRASTRUCTURE CARDS & CAPACITY
+   ========================================================================== */
+.infra-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.infra-stat-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.infra-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-navy);
+}
+
+.infra-stat-card.highlight::before {
+  background: var(--gradient-gold);
+}
+
+.infra-card-badge {
+  display: inline-block;
+  background: var(--navy-ultra-light);
+  color: var(--secondary-royal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.infra-capacity-number {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--primary-navy);
+  margin-bottom: 0.25rem;
+}
+
+.infra-stat-card.highlight .infra-capacity-number {
+  color: var(--accent-gold-dark);
+}
+
+.infra-capacity-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.infra-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   PREMIER LEAGUE & SPECIAL AWARDS
+   ========================================================================== */
+.premier-award-card {
+  background: linear-gradient(135deg, #0B1C32 0%, #153256 100%);
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 15px 35px rgba(11, 28, 50, 0.25);
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.premier-award-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.premier-award-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.premier-trophy-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.18);
+  border: 2px solid var(--accent-gold);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.35);
+}
+
+.premier-badge-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.35rem;
+}
+
+.premier-award-title {
+  color: var(--bg-white);
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.premier-award-desc {
+  color: #CBD5E1;
+  font-size: 0.95rem;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   PRIVACY POLICY & COMPLIANCE PAGES
+   ========================================================================== */
+.policy-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 3.5rem;
+}
+
+.policy-block {
+  margin-bottom: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.policy-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.policy-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.policy-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.policy-list {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1024px) {
