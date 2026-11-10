@@ -191,6 +191,24 @@ function initContactForm() {
   const form = document.getElementById('b2bEnquiryForm');
   if (!form) return;
 
+  // Auto pre-select service from URL parameter (e.g. ?service=Personal+Loan+Collections)
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service');
+    if (serviceParam) {
+      const serviceSelect = form.querySelector('#service');
+      if (serviceSelect) {
+        for (let i = 0; i < serviceSelect.options.length; i++) {
+          if (serviceSelect.options[i].value.toLowerCase() === serviceParam.toLowerCase() ||
+              serviceSelect.options[i].text.toLowerCase() === serviceParam.toLowerCase()) {
+            serviceSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+  } catch (err) {}
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
