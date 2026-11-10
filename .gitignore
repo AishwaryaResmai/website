@@ -1,0 +1,13 @@
+# Dependencies & Runtime
+node_modules/
+__pycache__/
+*.pyc
+
+# Local Git binaries & tools
+.git-bin/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
