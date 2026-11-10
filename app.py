@@ -102,6 +102,10 @@ class VishwasRequestHandler(http.server.SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_error(500, f"Error: {e}")
         else:
+            # Clean URLs support: /about -> /about.html
+            local_path = (BASE_DIR / parsed.path.lstrip("/")).resolve()
+            if not local_path.suffix and (local_path.with_suffix(".html")).exists():
+                self.path = parsed.path + ".html"
             super().do_GET()
 
 
