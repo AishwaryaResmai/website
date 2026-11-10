@@ -12,7 +12,7 @@ if exist %GIT_EXE% (
     %GIT_EXE% push -u origin main
 ) else (
     echo [OK] Using system Git...
-    git push -u origin main
+    git push -u origin mainss
 )
 
 echo.

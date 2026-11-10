@@ -18,8 +18,18 @@
   }
 }
 
-/* Medium Tablets & Landscape Devices (max-width: 1024px) */
+/* Medium Tablets & Laptops (max-width: 1024px) */
 @media (max-width: 1024px) {
+  .nav-links, .nav-cta {
+    display: none !important;
+  }
+
+  .mobile-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -194,3 +204,4 @@
     font-size: 0.65rem;
   }
 }
+

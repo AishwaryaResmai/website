@@ -427,3 +427,4 @@ function showToast(msg, type = 'info') {
     setTimeout(() => toast.remove(), 350);
   }, 4500);
 }
+
