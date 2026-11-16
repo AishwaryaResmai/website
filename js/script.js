@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initScrollSpy();
   initStatCounters();
+  initJourneyTimeline();
   initMapTabs();
   initFaqAccordion();
   initContactForm();
@@ -130,7 +131,167 @@ function initStatCounters() {
   }
 }
 
-/* --- 5. Google Maps Tabs (Suchitra vs Navakethan Secunderabad) --- */
+/* --- 5. Interactive Recovery Growth Timeline (2019 - 2025) --- */
+function initJourneyTimeline() {
+  const milestones = [
+    {
+      year: '2019',
+      amount: '₹1 Crore',
+      tag: 'Inception & Foundation',
+      badge: 'Founding Year Milestone',
+      title: 'Our journey started back in 2019',
+      desc: 'Vishwas Enterprises commenced operations in Suchitra, Hyderabad under the visionary leadership of Mr. R. Srinivas. Establishing rigorous ethical compliance and standardized operating workflows, our foundational team achieved ₹1 Crore in initial retail portfolio resolutions.',
+      scale: '20 Seats &bull; Suchitra Head Office',
+      award: 'Inaugural Operations',
+      highlights: [
+        '<strong>Headquarters Established:</strong> Operational registered office opened at Suchitra, Hyderabad with 20 seats.',
+        '<strong>Foundational Governance:</strong> Standardized collection calling protocols and 100% adherence to RBI Fair Practices Code.',
+        '<strong>Early Delinquency Resolution:</strong> Successful recovery benchmarks in early bucket retail personal loans and credit cards.'
+      ]
+    },
+    {
+      year: '2021',
+      amount: '₹4 Crores',
+      tag: 'Statewide Expansion',
+      badge: 'Regional Growth Milestone',
+      title: 'Regional expansion & 4x portfolio growth in 2021',
+      desc: 'Quadrupled annual recovery volume to ₹4 Crores by scaling our field tracing network across all districts of Telangana and Andhra Pradesh. Deployed multilingual calling teams and structured skip-tracing workflows.',
+      scale: 'Expanded Field Network',
+      award: 'Regional Empanelments',
+      highlights: [
+        '<strong>₹4 Crores Resolved:</strong> 400% growth in annual debt resolution volume across retail banking products.',
+        '<strong>Dual-State Network:</strong> Ground coverage established across key urban and semi-urban clusters in Telangana and AP.',
+        '<strong>Specialized Skip Tracing:</strong> Advanced debtor tracing protocols to locate untraceable borrowers ethically.'
+      ]
+    },
+    {
+      year: '2022',
+      amount: '₹12 Crores',
+      tag: 'Multi-Bank Scale Up',
+      badge: 'Institutional Trust Milestone',
+      title: 'Tripled portfolio recoveries to ₹12 Crores in 2022',
+      desc: 'Secured primary collection panel empanelments with leading scheduled commercial banks and premier NBFCs, tripling recovered debt to ₹12 Crores and commissioning our strategic Secunderabad branch at Navakethan Complex.',
+      scale: 'Navakethan Branch Added (80 Seats)',
+      award: 'First Platinum Citations',
+      highlights: [
+        '<strong>₹12 Crores Recoveries:</strong> Massive surge in hard bucket and written-off loan resolution throughput.',
+        '<strong>Secunderabad Branch Opened:</strong> Commissioned high-capacity operations center at Navakethan Complex.',
+        '<strong>Top Vendor Recognition:</strong> Awarded inaugural bank performance trophies for settlement speed and zero-complaint compliance.'
+      ]
+    },
+    {
+      year: '2025',
+      amount: '₹70+ Crores',
+      tag: 'Enterprise Scale Benchmark',
+      badge: 'Landmark Milestone',
+      title: 'Our journey reached landmark ₹70+ Crores in 2025',
+      desc: 'Surpassed ₹70 Crores in collections and recoveries across consumer loans, credit cards, business loans, and outstation portfolios. Backed by 100 seats and 53 supervised personnel, Vishwas Enterprises stands as an industry leader in Southern India.',
+      scale: '100 Seats &bull; 53 Staff',
+      award: '11 Plat &bull; 6 Gold &bull; Premier League',
+      highlights: [
+        '<strong>₹70+ Crores Landmark:</strong> Proven ability to supervise and resolve large-scale delinquent portfolios with high velocity.',
+        '<strong>100-Seat Infrastructure:</strong> Dual hubs operating seamlessly in Suchitra (20 seats) and Navakethan Complex (80 seats).',
+        '<strong>53 Industry Experts:</strong> 2 supervisors, 2 back-office analysts, 45 telecallers, and 4 dedicated field recovery executives.'
+      ]
+    }
+  ];
+
+  const nodes = document.querySelectorAll('.journey-node');
+  const progressLine = document.getElementById('timelineProgress');
+  const prevBtn = document.getElementById('timelinePrev');
+  const nextBtn = document.getElementById('timelineNext');
+
+  const badgeElem = document.getElementById('journeyBadge');
+  const amountHero = document.getElementById('journeyAmountHero');
+  const yearMeta = document.getElementById('journeyYearMeta');
+  const scaleMeta = document.getElementById('journeyScaleMeta');
+  const awardMeta = document.getElementById('journeyAwardMeta');
+  const tagElem = document.getElementById('journeyTag');
+  const titleElem = document.getElementById('journeyTitle');
+  const descElem = document.getElementById('journeyDesc');
+  const highlightsElem = document.getElementById('journeyHighlights');
+
+  if (!nodes.length) return;
+
+  let currentIndex = 3; // Default to 2025 (latest milestone)
+
+  function updateMilestone(index) {
+    if (index < 0 || index >= milestones.length) return;
+    currentIndex = index;
+
+    // Update active node
+    nodes.forEach((n, idx) => {
+      if (idx === index) {
+        n.classList.add('active');
+      } else {
+        n.classList.remove('active');
+      }
+    });
+
+    // Update progress bar width
+    const percentage = (index / (milestones.length - 1)) * 100;
+    if (progressLine) {
+      progressLine.style.width = `${percentage}%`;
+    }
+
+    const data = milestones[index];
+
+    // Fade effect and update display
+    const displayCard = document.getElementById('journeyDisplay');
+    if (displayCard) {
+      displayCard.style.opacity = '0.4';
+      displayCard.style.transform = 'translateY(4px)';
+    }
+
+    setTimeout(() => {
+      if (badgeElem) badgeElem.textContent = data.badge;
+      if (amountHero) amountHero.textContent = data.amount;
+      if (yearMeta) yearMeta.textContent = data.year;
+      if (scaleMeta) scaleMeta.innerHTML = data.scale;
+      if (awardMeta) awardMeta.innerHTML = data.award;
+      if (tagElem) tagElem.textContent = data.tag;
+      if (titleElem) titleElem.textContent = data.title;
+      if (descElem) descElem.textContent = data.desc;
+
+      if (highlightsElem) {
+        highlightsElem.innerHTML = data.highlights.map(h => `
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>${h}</span>
+          </li>
+        `).join('');
+      }
+
+      if (displayCard) {
+        displayCard.style.opacity = '1';
+        displayCard.style.transform = 'translateY(0)';
+      }
+    }, 150);
+  }
+
+  nodes.forEach((node, idx) => {
+    node.addEventListener('click', () => updateMilestone(idx));
+  });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      const newIdx = currentIndex > 0 ? currentIndex - 1 : milestones.length - 1;
+      updateMilestone(newIdx);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const newIdx = currentIndex < milestones.length - 1 ? currentIndex + 1 : 0;
+      updateMilestone(newIdx);
+    });
+  }
+
+  // Initialize with latest
+  updateMilestone(currentIndex);
+}
+
+/* --- 6. Google Maps Tabs (Suchitra vs Navakethan Secunderabad) --- */
 function initMapTabs() {
   const tabButtons = document.querySelectorAll('.map-tab-btn');
   const panes = document.querySelectorAll('.map-pane');
